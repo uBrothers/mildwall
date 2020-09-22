@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    html{
+      margin-top:50px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: #404040;
+    }
+    h3 {
+      font-size:20px;
+    }
+    table {
+      margin-top:20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
+    th {
+      background-color: #3398ff;
+      color: white;
+    }
+    .contents {
+      text-align:center;
+    }
+    .aButton {
+      background:#3398ff;
+      border:2px solid #0075ff;
+      padding:4px;
+      margin-right:10px;
+      font-size:15px;
+      color:white;
+    }
+    .bButton {
+      background:#ff4500;
+      border:2px solid #ff0000;
+      padding:4px;
+      margin-right:10px;
+      margin-left:10px;
+      font-size:15px;
+      color:white;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/script/custom.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script language='javascript' type='text/javascript'>
+    document.oncontextmenu = new Function('return false');
+    document.ondragstart = new Function('return false');
+    document.onselectstart = new Function('return false');
+    document.onkeydown = new Function('return false');
+    $(document).ready(function(){
+      var socket = io.connect({ forceNew: true });
+      var keyword = $("#keyword");
+      var contents = $(".contents");
+      contents.on('click','#keyword',function(){
+        var linkString = createLink($(this).attr('x'),$(this).attr('y'));
+        location.href = "/"+linkString;
+      });
+      var del = $('#del');
+      contents.on('click','#del',function(){
+        socket.emit('delKeyword',$(this).attr('keyword'));
+        location.href = "/admin/keyword";
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <a href="/" style="position:fixed;top:10px;left:10px;"><button class="aButton">Home</button></a>
+    <a href="/admin" style="position:fixed;top:10px;left:70px;"><button class="aButton">Admin Page</button></a>
+    <div class="contents">
+    <h3>Keywords(#: <%=keyword.length%>)</h3>
+      <table>
+        <tr>
+          <th>keyword</th>
+          <th>xCoordinate</th>
+          <th>yCoordinate</th>
+          <th>Created Date</th>
+        </tr>
+        <% keyword.forEach(function(keyword){ %>
+          <tr>
+            <td><input class="aButton" id="keyword" type="button" value="Go" x="<%= keyword.x %>" y="<%= keyword.y %>"><%= keyword.keyword %><input class="bButton" id="del" type="button" value="del" keyword="<%= keyword.keyword %>"></td>
+            <td><%= keyword.x %></td>
+            <td><%= keyword.y %></td>
+            <td><%= keyword.createdAt.toLocaleDateString() %></td>
+          </tr>
+        <% }) %>
+      </table>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    html{
+      margin-top:50px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: #404040;
+    }
+    h3 {
+      font-size:20px;
+    }
+    table {
+      margin-top:20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2}
+    th {
+      background-color: #3398ff;
+      color: white;
+    }
+    .contents {
+      text-align:center;
+    }
+    .aButton {
+      background:#3398ff;
+      border:2px solid #0075ff;
+      padding:4px;
+      margin-right:10px;
+      font-size:15px;
+      color:white;
+    }
+    </style>
+    <script language='javascript' type='text/javascript'>
+        document.oncontextmenu = new Function('return false');
+        document.ondragstart = new Function('return false');
+        document.onselectstart = new Function('return false');
+        document.onkeydown = new Function('return false');
+    </script>
+  </head>
+  <body>
+    <a href="/" style="position:fixed;top:10px;left:10px;"><button class="aButton">Home</button></a>
+    <a href="/admin" style="position:fixed;top:10px;left:70px;"><button class="aButton">Admin Page</button></a>
+    <div class="contents">
+    <h3>Users Info(#: <%=users.length%>)</h3>
+      <table>
+        <tr>
+          <th>Class</th>
+          <th>Email</th>
+          <th>Verification</th>
+          <th>Nickname</th>
+          <th>Gender</th>
+          <th>ObjectId</th>
+          <th>Created Date</th>
+        </tr>
+        <% users.forEach(function(user){ %>
+          <tr>
+            <td><%= user.class %></td>
+            <td><%= user.email %></td>
+            <td><%= user.randValue %></td>
+            <td><%= user.nickname %></td>
+            <td><%= user.gender %></td>
+            <td><%= user._id %></td>
+            <td><%= user.createdAt.toLocaleDateString() %></td>
+          </tr>
+        <% }) %>
+      </table>
+  </div>
+  </body>
+</html>

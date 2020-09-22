@@ -1,0 +1,26 @@
+fromclient / f_clnt
+toclient / t_clnt
+zoomclient / z_clnt
+
+xCoordinate / a_c
+xxCoordinate / aa_c
+yCoordinate / b_c
+yyCoordinate / bb_c
+
+location / lctn
+added / ad_ed
+
+findEmpty / fnd_E
+findDoodle / fnd_D
+findPlayWith / fnd_P
+
+newPoint / npnt
+oldPoint / opnt
+clientOldX / clntox
+clientOldY / clntoy
+oldXCoord / oxcrd
+oldYCoord / oycrd
+
+fontSize / ft_S
+lineHeight / ln_H
+textRadian / t_Rad

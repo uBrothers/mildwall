@@ -1,0 +1,35 @@
+<!-- views/partials/footer.ejs -->
+<script type="text/javascript" src="/script/jquery.cookie.js"></script>
+<script>
+  function chkId() {
+    alert('<%= __('contactAlert')%>');
+  }
+</script>
+<div class="footer">
+  <a href="https://twitter.com/MildWall" target="_blank"><img src='/image/link_social/twitter_monorev2.png' id="twitter"></a>
+  <a href="https://www.facebook.com/MildWall-961355833918588/?ref=br_rs" target="_blank"><img src='/image/link_social/facebook_monorev2.png' id="facebook"></a>
+  <a href='/'><img src='/image/main_logo_w.png' alt='MildWall.com' id="logo"></a>
+  <table id="footerTable">
+    <tr><td><a href="/about" class="aLink" id="footerList"><%= __('aboutService')%></a></td><td><a href="/posts" class="aLink" id="footerList" onClick="return chkId()"><%= __('contactUs')%></a></td></tr>
+  </table>
+  <button id="korean">한국어</button>
+  <button id="english">English</button>
+  <div id="footer">
+  </div>
+</div>
+<script>
+    document.getElementById("footer").innerHTML = '<p>&copy;  ' + new Date().getFullYear() + ' MildWall. All rights reserved.</p>'
+</script>
+<script>
+  var korean = $("#korean");
+  var english = $("#english");
+  korean.click(function(){
+    $.cookie('lang','ko',{path:'/'});
+    location.reload();
+  });
+  english.click(function(){
+    $.cookie('lang','en',{path:'/'});
+    location.reload();
+  });
+
+</script>

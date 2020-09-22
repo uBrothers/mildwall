@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    color: #404040;
+  }
+  h3 {
+    font-size:20px;
+  }
+  table {
+    margin-top:20px;
+    border-collapse: collapse;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}
+  th {
+    background-color: #3398ff;
+    color: white;
+  }
+  .contents {
+    text-align:center;
+  }
+  .aButton {
+    background:#3398ff;
+    border:2px solid #0075ff;
+    padding:4px;
+    margin-right:10px;
+    font-size:15px;
+    color:white;
+  }
+  @media only screen and (max-width: 1035px) {
+    table {
+      width:100%;
+    }
+  }
+</style>
+<script language='javascript' type='text/javascript'>
+        document.oncontextmenu = new Function('return false');
+        document.ondragstart = new Function('return false');
+        document.onselectstart = new Function('return false');
+        document.onkeydown = new Function('return false');
+</script>
+</head>
+<body>
+  <div class="contents">
+    <h3>Posts Info(#: <%=posts.length%>)</h3>
+    <a href="/" style="position:fixed;top:10px;left:10px;"><button class="aButton">Home</button></a>
+    <a href="/admin" style="position:fixed;top:10px;left:70px;"><button class="aButton">Admin Page</button></a>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Nickname</th>
+        <th>Date</th>
+      </tr>
+      <% posts.forEach(function(post){ %>
+      <tr>
+        <td><a href="/posts/<%= post._id %>"><%= post.title %></a></td>
+        <td><%= post.author.nickname %></td>
+        <td><%= post.createdAt.toLocaleDateString() %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+  </body>
+</html>

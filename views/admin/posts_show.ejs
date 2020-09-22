@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script language='javascript' type='text/javascript'>
+        document.oncontextmenu = new Function('return false');
+        document.ondragstart = new Function('return false');
+        document.onselectstart = new Function('return false');
+        document.onkeydown = new Function('return false');
+    </script>
+  </head>
+<body>
+  <div class="contents">
+  <div class="conBox" style="width:70%">
+    <!-- Delete button here -->
+    <form class="btn_delete" action="/posts/<%=post._id%>?_method=delete" method="post">
+      <input type="Submit" class="button1" value="Delete">
+    </form>
+    <a href="/admin/posts">Back</a>
+    <h3>Title : <%= post.title %></h3>
+  <div>Created at <%= post.createdAt.toLocaleDateString() %> <%= post.createdAt.toLocaleTimeString() %>
+  </div>
+  <% if(post.updatedAt) { %>
+    <div>Updated at <%= post.updatedAt.toLocaleDateString() %> <%= post.updatedAt.toLocaleTimeString() %>
+    </div>
+  <% } %>
+  <textarea id="postText" style="height:300px;resize:none"><%= post.body %></textarea>
+  <p>Nickname: <%= post.author.nickname %></p>
+  <p>Email: <%= post.author.email %></p>
+  </div>
+</div>
+</body>
+</html>
